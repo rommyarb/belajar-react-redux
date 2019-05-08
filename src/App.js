@@ -3,6 +3,12 @@ import './App.css';
 import { connect } from 'react-redux';
 
 function App(props) {
+  // useState
+  // ....
+
+  // onclick addItem
+  // ...
+
   return (
     <div className="App">
       <h2>DAFTAR BELANJA</h2>
@@ -11,9 +17,13 @@ function App(props) {
       <input
         type="text"
         value={props.item}
-        onChange={e => props.setItem(e.target.value)}
+        onChange={e =>
+          props.dispatch({ type: 'SET_ITEM', value: e.target.value })
+        }
       />
-      <button onClick={props.addItem}>Tambahkan</button>
+      <button onClick={() => props.dispatch({ type: 'ADD_ITEM' })}>
+        Tambahkan
+      </button>
 
       <ol>
         {props.keranjang.map((item, index) => (
@@ -31,17 +41,14 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setItem: value => dispatch({ type: 'SET_ITEM', value }),
-    addItem: () =>
-      dispatch({
-        type: 'ADD_ITEM'
-      })
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setItem: value => dispatch({ type: 'SET_ITEM', value }),
+//     addItem: () =>
+//       dispatch({
+//         type: 'ADD_ITEM'
+//       })
+//   };
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);
