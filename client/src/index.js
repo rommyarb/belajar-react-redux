@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import mySaga from './sagas';
+import mySaga from './saga/sagas';
 
 /////////////////////////////////////////////////////////
 // APP REDUCER:
@@ -15,8 +15,10 @@ const initState = {
 };
 function appReducer(state = initState, action) {
   switch (action.type) {
-    case 'ADD_ITEM':
-      return { ...state, keranjang: [...state.keranjang, action.item] };
+    case 'ITEM_ADDED':
+      return { ...state, keranjang: [action.item, ...state.keranjang] };
+    case 'ITEMS_RECEIVED':
+      return { ...state, keranjang: action.keranjang }
     default:
       return state;
   }

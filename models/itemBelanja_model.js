@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var itemBelanjaSchema = new mongoose.Schema({
     title: String
