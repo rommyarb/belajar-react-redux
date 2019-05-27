@@ -17,3 +17,8 @@
 node_modules/
 
 yarn.lock
+
+# client's
+client/node_modules/
+client/src/
+client/public/
